@@ -1,0 +1,2 @@
+import { GraduationCap, TrendingUp, KeyRound } from 'lucide-react';
+export function Logo({ compact = false }: { compact?: boolean }) { return <div className="rqrs-logo"><div className="logo-symbol" aria-hidden="true"><GraduationCap className="logo-cap"/><TrendingUp className="logo-growth"/><KeyRound className="logo-key"/></div><div><strong>RQRS</strong>{!compact && <span>Refugee Qualification<br/>Recognition System</span>}</div></div>; }

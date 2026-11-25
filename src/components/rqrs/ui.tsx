@@ -1,0 +1,10 @@
+import { ArrowRight, FileText, Check, CircleHelp } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
+import { Button } from '@/components/ui/button';
+import { stages } from '@/lib/rqrs';
+import type { ReactNode } from 'react';
+export function PageTitle({ eyebrow, title, description, action }: { eyebrow: string; title: string; description: string; action?: ReactNode }) { return <div className="page-title"><div><div className="eyebrow">{eyebrow}</div><h1>{title}</h1><p>{description}</p></div>{action}</div>; }
+export function Status({ stage }: { stage: number }) { return <span className={`status ${stage === 5 ? 'recognized' : stage === 0 ? 'pending' : 'review'}`}><span/>{stage === 5 ? 'Recognized' : stage === 0 ? 'Draft' : 'Under review'}</span>; }
+export function Timeline({ stage }: { stage: number }) { return <ol className="timeline">{stages.map((label, i) => <li key={label} className={i < stage ? 'complete' : i === stage ? 'current' : ''}><span className="timeline-dot">{i < stage ? <Check size={14}/> : i + 1}</span><span>{label}</span>{i === stage && <small>{stage === 5 ? 'Complete' : 'You are here'}</small>}</li>)}</ol>; }
+export function DocumentPreview({ name, detail, verified = false }: { name: string; detail: string; verified?: boolean }) { return <div className="document-row"><div className="file-symbol"><FileText size={20}/><small>PDF</small></div><div className="document-info"><strong>{name}</strong><span>{detail}</span></div>{verified ? <span className="verified-mark" title="Document complete"><Check size={17}/></span> : <span className="mini-status">Uploaded</span>}</div>; }
+export function SignInPrompt({ purpose }: { purpose: string }) { return <div className="signin-prompt"><CircleHelp size={24}/><h2>Keep your qualifications safe</h2><p>Sign in to {purpose}. Your documents and personal information stay private.</p><Button asChild><Link to="/auth">Sign in or create an account <ArrowRight/></Link></Button></div>; }

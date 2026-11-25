@@ -1,0 +1,10 @@
+import { useState } from 'react';
+import { Sparkles, X, Send, MessageCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { faqs } from '@/lib/rqrs';
+type Message = { role: 'user' | 'assistant'; text: string };
+export function SmartGuide() {
+ const [open, setOpen] = useState(false); const [text, setText] = useState(''); const [messages, setMessages] = useState<Message[]>([{ role: 'assistant', text: 'Hello! I’m your RQRS guide. What would you like to know about recognizing your qualifications?' }]);
+ function answer(question: string) { const q = question.toLowerCase(); const index = /arabic|french|translat/.test(q) ? 0 : /lost|closed|missing|passport/.test(q) ? 1 : /waiver|fee|pay/.test(q) ? 2 : /long|time|week/.test(q) ? 4 : 3; setMessages(prev => [...prev, { role: 'user', text: question }, { role: 'assistant', text: faqs[index]?.answer || 'Please contact your caseworker for help.' }]); setText(''); }
+ return <div className="smart-guide">{open && <section className="chat-panel" aria-label="RQRS Smart Guide"><header><div><Sparkles size={19}/><strong>RQRS Smart Guide</strong></div><Button variant="ghost" size="icon" aria-label="Close guide" onClick={() => setOpen(false)}><X/></Button></header><div className="chat-messages">{messages.map((m,i) => <div key={i} className={`chat-message ${m.role}`}>{m.text}</div>)}</div><div className="chat-suggestions">{['Translation help', 'Lost documents', 'Fee waivers'].map(q => <Button key={q} size="sm" variant="outline" onClick={() => answer(q)}>{q}</Button>)}</div><form onSubmit={e => { e.preventDefault(); if(text.trim()) answer(text); }}><input value={text} onChange={e => setText(e.target.value)} aria-label="Ask the RQRS guide" placeholder="Ask a question…"/><Button size="icon" aria-label="Send question" disabled={!text.trim()}><Send/></Button></form><small>Answers from RQRS guides. Confirm official requirements with the authority.</small></section>}<Button className="chat-launcher" onClick={() => setOpen(!open)}><MessageCircle/> {open ? 'Close guide' : 'Ask RQRS Guide'}<span className="chat-online"/></Button></div>;
+}

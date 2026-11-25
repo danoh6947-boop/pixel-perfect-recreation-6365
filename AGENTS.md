@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+- Keep reusable RQRS presentation in src/components/rqrs and individually titled pages in TanStack leaf routes; this separates shared navigation from page flows.
+- Use Cloud RLS-scoped clients for private application records and separate protected role rows for caseworker access; sample workspaces never write live status.
+- Save offline drafts locally and certificate blobs in IndexedDB, then explicitly upload signed-in files to private Cloud storage; this supports unstable connections without making records public.
