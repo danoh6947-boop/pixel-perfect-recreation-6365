@@ -13,9 +13,14 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApplicationsRouteImport } from './routes/applications'
 import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CaseworkerRouteImport } from './routes/caseworker'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as NavigatorRouteImport } from './routes/navigator'
+import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as WalletRouteImport } from './routes/wallet'
+import { Route as WelcomeRouteImport } from './routes/welcome'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -37,6 +42,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CaseworkerRoute = CaseworkerRouteImport.update({
+  id: '/caseworker',
+  path: '/caseworker',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KnowledgeRoute = KnowledgeRouteImport.update({
   id: '/knowledge',
   path: '/knowledge',
@@ -47,9 +57,29 @@ const NavigatorRoute = NavigatorRouteImport.update({
   path: '/navigator',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OpportunitiesRoute = OpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WalletRoute = WalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WelcomeRoute = WelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -58,18 +88,28 @@ export interface FileRoutesByFullPath {
   '/applications': typeof ApplicationsRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/caseworker': typeof CaseworkerRoute
   '/knowledge': typeof KnowledgeRoute
   '/navigator': typeof NavigatorRoute
+  '/opportunities': typeof OpportunitiesRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/settings': typeof SettingsRoute
+  '/wallet': typeof WalletRoute
+  '/welcome': typeof WelcomeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/applications': typeof ApplicationsRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/caseworker': typeof CaseworkerRoute
   '/knowledge': typeof KnowledgeRoute
   '/navigator': typeof NavigatorRoute
+  '/opportunities': typeof OpportunitiesRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/settings': typeof SettingsRoute
+  '/wallet': typeof WalletRoute
+  '/welcome': typeof WelcomeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,9 +117,14 @@ export interface FileRoutesById {
   '/applications': typeof ApplicationsRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/caseworker': typeof CaseworkerRoute
   '/knowledge': typeof KnowledgeRoute
   '/navigator': typeof NavigatorRoute
+  '/opportunities': typeof OpportunitiesRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/settings': typeof SettingsRoute
+  '/wallet': typeof WalletRoute
+  '/welcome': typeof WelcomeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -88,27 +133,42 @@ export interface FileRouteTypes {
     | '/applications'
     | '/apply'
     | '/auth'
+    | '/caseworker'
     | '/knowledge'
     | '/navigator'
+    | '/opportunities'
     | '/reset-password'
+    | '/settings'
+    | '/wallet'
+    | '/welcome'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/applications'
     | '/apply'
     | '/auth'
+    | '/caseworker'
     | '/knowledge'
     | '/navigator'
+    | '/opportunities'
     | '/reset-password'
+    | '/settings'
+    | '/wallet'
+    | '/welcome'
   id:
     | '__root__'
     | '/'
     | '/applications'
     | '/apply'
     | '/auth'
+    | '/caseworker'
     | '/knowledge'
     | '/navigator'
+    | '/opportunities'
     | '/reset-password'
+    | '/settings'
+    | '/wallet'
+    | '/welcome'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -116,9 +176,14 @@ export interface RootRouteChildren {
   ApplicationsRoute: typeof ApplicationsRoute
   ApplyRoute: typeof ApplyRoute
   AuthRoute: typeof AuthRoute
+  CaseworkerRoute: typeof CaseworkerRoute
   KnowledgeRoute: typeof KnowledgeRoute
   NavigatorRoute: typeof NavigatorRoute
+  OpportunitiesRoute: typeof OpportunitiesRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  SettingsRoute: typeof SettingsRoute
+  WalletRoute: typeof WalletRoute
+  WelcomeRoute: typeof WelcomeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -151,6 +216,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/caseworker': {
+      id: '/caseworker'
+      path: '/caseworker'
+      fullPath: '/caseworker'
+      preLoaderRoute: typeof CaseworkerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/knowledge': {
       id: '/knowledge'
       path: '/knowledge'
@@ -165,11 +237,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NavigatorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/opportunities': {
+      id: '/opportunities'
+      path: '/opportunities'
+      fullPath: '/opportunities'
+      preLoaderRoute: typeof OpportunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reset-password': {
       id: '/reset-password'
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wallet': {
+      id: '/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof WalletRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -180,9 +280,14 @@ const rootRouteChildren: RootRouteChildren = {
   ApplicationsRoute: ApplicationsRoute,
   ApplyRoute: ApplyRoute,
   AuthRoute: AuthRoute,
+  CaseworkerRoute: CaseworkerRoute,
   KnowledgeRoute: KnowledgeRoute,
   NavigatorRoute: NavigatorRoute,
+  OpportunitiesRoute: OpportunitiesRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  SettingsRoute: SettingsRoute,
+  WalletRoute: WalletRoute,
+  WelcomeRoute: WelcomeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
